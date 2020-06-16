@@ -4,76 +4,57 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Book extends Publication implements IVisualizable {
-	private int id;
-	private String isbn;
-	private boolean readed;
-	private int timeReaded;
+	private boolean alreadyRead;
+	private int timeRead;
 	
 	
-	public Book(String title, Date edititionDate, String editorial, String[] authors) {
-		super(title, edititionDate, editorial);
+	public Book(String title, Date editionDate, String editorial, String[] authors) {
+		super(title, editionDate, editorial);
 		// TODO Auto-generated constructor stub
 		setAuthors(authors);
 	}
 
-
-	public int getId() {
-		return id;
-	}
-
-
-	public String getIsbn() {
-		return isbn;
-	}
-
-
-	public void setIsbn(String isbn) {
-		this.isbn = isbn;
-	}
-
-
-	public String isReaded() {
-		String leido = "";
-		if(readed == true) {
-			leido = "Sí";
+	public String isRead() {
+		String isRead;
+		if(alreadyRead) {
+			isRead = "Sí";
 		}else {
-			leido = "No";
+			isRead = "No";
 		}
 		
-		return leido;
+		return isRead;
 	}
 
-
-	public void setReaded(boolean readed) {
-		this.readed = readed;
+	public void setAlreadyRead(boolean alreadyRead) {
+		this.alreadyRead = alreadyRead;
 	}
 	
 	public boolean getIsReaded() {
-		return readed;
+		return alreadyRead;
 	}
 
 
-	public int getTimeReaded() {
-		return timeReaded;
+	public int getTimeRead() {
+		return timeRead;
 	}
 
 
-	public void setTimeReaded(int timeReaded) {
-		this.timeReaded = timeReaded;
+	public void setTimeRead(int timeRead) {
+		this.timeRead = timeRead;
 	}
 	
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		String detailBook = "\n :: BOOK ::" + 
-							"\n Title: " + getTitle() +
-							"\n Editorial: " + getEditorial() + 
-							"\n Edition Date: " + getEdititionDate() +
-							"\n Authors: ";
+		StringBuilder detailBook = new StringBuilder("\n :: BOOK ::" +
+				"\n Title: " + getTitle() +
+				"\n Editorial: " + getEditorial() +
+				"\n Edition Date: " + getEditionDate() +
+				"\n Authors: ");
 		for (int i = 0; i < getAuthors().length; i++) {
-			detailBook += "\t" + getAuthors()[i] + " ";
+			detailBook.append("\t").append(getAuthors()[i]).append(" ");
 		}
-		return  detailBook;
+		return detailBook.toString();
 	}
 
 
@@ -88,14 +69,14 @@ public class Book extends Publication implements IVisualizable {
 	public void stopToSee(Date dateI, Date dateF) {
 		// TODO Auto-generated method stub
 		if (dateF.getTime() > dateI.getTime()) {
-			setTimeReaded((int)(dateF.getTime() - dateI.getTime()));
+			setTimeRead((int)(dateF.getTime() - dateI.getTime()));
 		}else {
-			setTimeReaded(0);
+			setTimeRead(0);
 		}
 	}
 	
 	public static ArrayList<Book> makeBookList() {
-		ArrayList<Book> books = new ArrayList();
+		ArrayList<Book> books = new ArrayList<>();
 		String[] authors = new String[3];
 		for (int i = 0; i < 3; i++) {
 			authors[i] = "author "+i;

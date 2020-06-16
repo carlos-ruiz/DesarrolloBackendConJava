@@ -12,7 +12,7 @@ public class AmazonUtil {
 		while(!sc.hasNextInt()) {
 			sc.next();
 			System.out.println("No ingresaste una opción válida1");
-			System.out.println("Intenta otra vez1");
+			System.out.println("Intenta otra vez");
 		}
 		
 		int response = sc.nextInt();
